@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>당신의 학점은??</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 80%;
+        margin: auto;
+      }
+      h1 {
+        color: rgb(0, 39, 103);
+        font-size: 60px;
+      }
+      .tableWrapper {
+        display: flex;
+        justify-content: center;
+        background-color: rgb(0, 129, 207);
+        align-items: center;
+        width: 100%;
+        height: 450px;
+        border-radius: 20px;
+      }
+      hr {
+        width: 2px;
+        height: 93%;
+        background-color: white;
+        border: 1px solid white;
+      }
+      .table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        width: 100%;
+        border-radius: 20px;
+        height: 100%;
+      }
+      .thRow {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 90%;
+        height: 40px;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .tableBox {
+        width: 90%;
+      }
+      .tdRow {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+      }
+      input {
+        border-radius: 5px;
+        border: none;
+        margin: 0;
+        width: 90%;
+        height: 30px;
+        padding-left: 5px;
+      }
+      .middleSection {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 150px;
+      }
+      .middleLeftFont {
+        color: rgb(229, 181, 82);
+        font-weight: bold;
+        font-size: 30px;
+        transform: rotate(-30deg);
+      }
+      .middleRightFont {
+        color: rgb(229, 181, 82);
+        font-weight: bold;
+        transform: rotate(30deg);
+        font-size: 30px;
+      }
+      .submitButton {
+        background-color: rgb(0, 144, 68);
+        border-radius: 8px;
+        border: none;
+        color: white;
+        width: 180px;
+        height: 60px;
+        font-size: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 30px;
+      }
+      .resetButton {
+        background-color: rgb(216, 75, 74);
+        border-radius: 8px;
+        border: none;
+        color: white;
+        width: 180px;
+        height: 60px;
+        font-size: 25px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      select {
+        border: none;
+        width: 90%;
+        height: 30px;
+        border-radius: 6px;
+      }
+      .column1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 10px;
+      }
+      .column2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10px;
+        width: 20%;
+      }
+      .column3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10px;
+        width: 20%;
+      }
+      .column4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10px;
+        width: 20%;
+      }
+      .bottomSection {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgb(0, 129, 207);
+        width: 100%;
+        height: 100px;
+        border-radius: 15px;
+        color: white;
+        font-weight: bold;
+        font-size: 25px;
+      }
+      #result {
+        color: rgb(0, 39, 103);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>당신의 학점은??</h1>
+    <!--입력테이블 섹션-->
+    <div class="tableWrapper">
+      <div class="table">
+        <div class="thRow">
+          <div class="column1">과목</div>
+          <div class="column2">점수</div>
+          <div class="column3">학점</div>
+          <div class="column4">전공</div>
+        </div>
+        <div class="tableBox"><!--이안에 List들이 생성된다.--></div>
+      </div>
+      <hr />
+      <div class="table">
+        <div class="thRow">
+          <div class="column1">과목</div>
+          <div class="column2">점수</div>
+          <div class="column3">학점</div>
+          <div class="column4">전공</div>
+        </div>
+        <div class="tableBox"><!--이안에 List들이 생성된다.--></div>
+      </div>
+    </div>
+    <!--버튼 섹션-->
+
+    <div class="middleSection">
+      <div class="middleLeftFont">망했냐??</div>
+      <div class="buttonwrapper">
+        <button class="submitButton">결과보기</button>
+        <button class="resetButton">초기화</button>
+      </div>
+      <div class="middleRightFont">야 우냐??</div>
+    </div>
+    <!--결과 섹션-->
+    <div class="bottomSection">
+      <div>총평점</div>
+      <div id="result" class="allResult">0</div>
+      <div>전공평점</div>
+      <div id="result" class="majorResult">0</div>
+      <div>이수학점</div>
+      <div id="result" class="isuCredit">0</div>
+      <div>전공이수</div>
+      <div id="result" class="majorIsuCredit">0</div>
+    </div>
+
+    <script language="JAVASCRIPT">
+      //입력 테이블의 리스트들을 생성하기 위한 함수
+      {
+        const tableBox = document.querySelectorAll('.tableBox');
+        //왼쪽 테이블 입력리스트
+        for (let i = 0; i < 7; ++i) {
+          const tableRowWrapper = document.createElement('div');
+          tableRowWrapper.className = 'tdRow';
+          //과목
+          const subjectInputWrapper = document.createElement('div');
+          subjectInputWrapper.className = 'column1';
+          subjectInputWrapper.id = 'td';
+          subjectInputWrapper.type = 'text';
+          const subjectInput = document.createElement('input');
+          subjectInput.className = 'subject';
+          subjectInput.placeholder = '과목명을 입력해주세요';
+          subjectInputWrapper.appendChild(subjectInput);
+          //점수
+          const scoreSelectWrapper = document.createElement('div');
+          scoreSelectWrapper.className = 'column2';
+          scoreSelectWrapper.id = 'td';
+          const scoreSelect = document.createElement('select');
+          scoreSelect.className = 'score';
+          scoreSelect.innerHTML =
+            '<option value="4.5">A+</option><option value="4">A</option><option value="3.5">B+</option><option value="3">B</option><option value="2.5">C+</option><option value="2">C</option><option value="1.5">D+</option><option value="1">D</option><option value="0">F</option>';
+          scoreSelectWrapper.appendChild(scoreSelect);
+          //학점
+          const creditsInputWrapper = document.createElement('div');
+          creditsInputWrapper.className = 'column3';
+          creditsInputWrapper.id = 'td';
+          const creditsInput = document.createElement('input');
+          creditsInput.type = 'number';
+          creditsInput.className = 'credit';
+          creditsInputWrapper.appendChild(creditsInput);
+          //전공
+          const majorInputWrapper = document.createElement('div');
+          majorInputWrapper.className = 'column4';
+          majorInputWrapper.id = 'td';
+          majorInputWrapper.innerHTML = '<input type="checkbox" class="major" />';
+
+          tableRowWrapper.appendChild(subjectInputWrapper);
+          tableRowWrapper.appendChild(scoreSelectWrapper);
+          tableRowWrapper.appendChild(creditsInputWrapper);
+          tableRowWrapper.appendChild(majorInputWrapper);
+
+          tableBox[0].appendChild(tableRowWrapper);
+        }
+        //오른쪽 테이블 입력리스트
+        for (let i = 0; i < 7; ++i) {
+          const tableRowWrapper = document.createElement('div');
+          tableRowWrapper.className = 'tdRow';
+          //과목
+          const subjectInputWrapper = document.createElement('div');
+          subjectInputWrapper.className = 'column1';
+          subjectInputWrapper.id = 'td';
+          subjectInputWrapper.type = 'text';
+          const subjectInput = document.createElement('input');
+          subjectInput.className = 'subject';
+          subjectInput.placeholder = '과목명을 입력해주세요';
+          subjectInputWrapper.appendChild(subjectInput);
+          //점수
+          const scoreSelectWrapper = document.createElement('div');
+          scoreSelectWrapper.className = 'column2';
+          scoreSelectWrapper.id = 'td';
+          const scoreSelect = document.createElement('select');
+          scoreSelect.className = 'score';
+          scoreSelect.innerHTML =
+            '<option value="4.5">A+</option><option value="4">A</option><option value="3.5">B+</option><option value="3">B</option><option value="2.5">C+</option><option value="2">C</option><option value="1.5">D+</option><option value="1">D</option><option value="0">F</option>';
+          scoreSelectWrapper.appendChild(scoreSelect);
+          //학점
+          const creditsInputWrapper = document.createElement('div');
+          creditsInputWrapper.className = 'column3';
+          creditsInputWrapper.id = 'td';
+          const creditsInput = document.createElement('input');
+          creditsInput.type = 'number';
+          creditsInput.className = 'credit';
+          creditsInputWrapper.appendChild(creditsInput);
+          //전공
+          const majorInputWrapper = document.createElement('div');
+          majorInputWrapper.className = 'column4';
+          majorInputWrapper.id = 'td';
+          majorInputWrapper.innerHTML = '<input type="checkbox" class="major" />';
+
+          tableRowWrapper.appendChild(subjectInputWrapper);
+          tableRowWrapper.appendChild(scoreSelectWrapper);
+          tableRowWrapper.appendChild(creditsInputWrapper);
+          tableRowWrapper.appendChild(majorInputWrapper);
+
+          tableBox[1].appendChild(tableRowWrapper);
+        }
+      }
+      //결과보기 버튼 클릭 시
+      {
+        //소수점 2자리 반올림 하기 위한함수
+        function roundToTwo(num) {
+          return +(Math.round(num + 'e+2') + 'e-2');
+        }
+        const submitBtn = document.querySelector('.submitButton');
+        submitBtn.addEventListener('click', () => {
+          const subjects = document.querySelectorAll('.subject');
+          const score = document.querySelectorAll('.score');
+          const credits = document.querySelectorAll('.credit');
+          const majors = document.querySelectorAll('.major');
+          // (학점수X교과목점수)의 합계 / 수강신청 총학점수
+          let allValue = 0; //총평점
+          let majorValue = 0; //전공평점
+          let creditCount = 0; //이수학점
+          let majorCount = 0; //전공이수
+          for (let i = 0; i < 14; ++i) {
+            //둘다 입력 되어있지 않은 경우
+            if (!(subjects[i].value && credits[i].value)) {
+              //둘중 하나만 입력 안되어있는 경우
+              if (subjects[i].value || credits[i].value) {
+                alert('과목명 혹은 학점을 전부 입력해 주세요.');
+                return;
+              }
+              continue;
+            }
+            allValue += Number(score[i].value) * Number(credits[i].value);
+            creditCount += Number(credits[i].value);
+
+            //만약 해당 과목이 전공에 체크한 경우
+            if (majors[i].checked) {
+              majorValue += Number(score[i].value) * Number(credits[i].value);
+              majorCount += Number(credits[i].value);
+            }
+          }
+          allValue = allValue / creditCount;
+          majorValue = majorValue / majorCount;
+          //아무것도 입력안되어있으면 return
+          if (creditCount == 0 && majorCount == 0) {
+            return;
+          }
+          //점수 등록
+          document.querySelector('.allResult').innerHTML = isNaN(allValue) ? 0 : roundToTwo(allValue);
+          document.querySelector('.majorResult').innerHTML = isNaN(majorValue) ? 0 : roundToTwo(majorValue);
+          document.querySelector('.isuCredit').innerHTML = isNaN(creditCount) ? 0 : creditCount;
+          document.querySelector('.majorIsuCredit').innerHTML = isNaN(majorCount) ? 0 : majorCount;
+        });
+      }
+      //초기화 버튼 클릭 시
+      {
+        const resetBtn = document.querySelector('.resetButton');
+        resetBtn.addEventListener('click', () => {
+          const subjects = document.querySelectorAll('.subject');
+          const score = document.querySelectorAll('.score');
+          const credits = document.querySelectorAll('.credit');
+          const majors = document.querySelectorAll('.major');
+          for (let i = 0; i < 14; ++i) {
+            subjects[i].value = '';
+            score[i].value = '4.5';
+            credits[i].value = '';
+            majors[i].checked = false;
+          }
+          //점수 등록
+          document.querySelector('.allResult').innerHTML = 0;
+          document.querySelector('.majorResult').innerHTML = 0;
+          document.querySelector('.isuCredit').innerHTML = 0;
+          document.querySelector('.majorIsuCredit').innerHTML = 0;
+        });
+      }
+    </script>
+  </body>
+</html>
